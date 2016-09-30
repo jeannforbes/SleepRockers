@@ -9,31 +9,35 @@ var app = app || {};
 
 app.main = {
 	//  Properties
-    game,
     maxSpeed: 200,
    	lastTime: 0, // use to calculate deltaTime
-    
+    game: undefined,
+
     
     // Initializes global variables and states - only called once!
 	init : function() {
 		console.log("Initializing...");
 
-        game = new Phaser.Game(800,600,Phaser.AUTO, '', { preload: preload, create: create, update: update});
-
+        var game = new Phaser.Game(800,600,Phaser.AUTO, '', { 
+            preload: this.preload.bind(this), 
+            create: this.create.bind(this),
+            update: this.update.bind(this)
+        });
 	},
 
-    //Preloads assets for the game
+    //Preloads assets for the game - called by phaser on initialization of game
     preload: function(){
 
     },
 
+    //Creates objects - called by phaser on initialization of game
     create: function(){
 
     },
 	
-    // Updates 1 step in the game state
+    // Updates 1 step in the game state - called by phaser
 	update: function(){
-        console.log("Current fps: "+calculateDeltaTime());
+        
 	},
 
     //Calculates the current fps
@@ -42,7 +46,7 @@ app.main = {
         now = performance.now(); 
         fps = 1000 / (now - this.lastTime);
         fps = clamp(fps, 12, 60);
-        this.lastTime = now; 
+        this.lastTime = now;
         return 1/fps;
     },
     
