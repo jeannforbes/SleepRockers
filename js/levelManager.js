@@ -38,8 +38,10 @@ app.levelManager = {
 	
     // Updates 1 step in the game state - called by phaser
 	update: function(){
-        app.entityManager.update();
+        //app.entityManager.update();
 		delta = game.Time.now()-game.Time.prevTime();
+		
+		//[Collision handling occurs here?] 
 	},
 	
 	//levelManager specific functions
