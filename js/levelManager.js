@@ -31,16 +31,18 @@ app.levelManager = {
     create: function(){
 		//set level
 		this.level = app.main.game.add.tilemap('planet');
-		this.level.addTilemapImage('Level_1','planetTiles');
+		this.level.addTilesetImage('testTiles','planetTiles');
 		
 		//set layers
 		this.backgroundLayer = this.level.createLayer('backgroundLayer');
-		this.collisionLayer = this.lavel.createLayer('collisionLayer');
+		this.collisionLayer = this.level.createLayer('collisionLayer');
 		
 		//set collision with the collisionLayer
 		this.level.setCollisionBetween(1,2000,true,'collisionLayer');
 		
 		this.backgroundLayer.resize();
+		
+		console.log("Level has been created.");
     },
 	
     // Updates 1 step in the game state - called by phaser

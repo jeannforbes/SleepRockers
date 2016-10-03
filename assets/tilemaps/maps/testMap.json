@@ -30,9 +30,9 @@
         {
          "columns":2,
          "firstgid":1,
-         "image":"..\/..\/tiles\/testTiles.jpg",
-         "imageheight":36,
-         "imagewidth":72,
+         "image":"..\/tiles\/testTiles.jpg",
+         "imageheight":32,
+         "imagewidth":64,
          "margin":0,
          "name":"testTiles",
          "spacing":0,
