@@ -24,7 +24,9 @@ Array.prototype.randomElement = function(){
 	return this[Math.floor(Math.random() * this.length)];
 };
 
-//Easy inheritance
-var inheritsFrom = function(child, parent){
-	child.prototype = Object.create(parent.prototype);
+function resizeScreen(){
+	var canvas = document.querySelector("canvas");
+	canvas.style.width = window.innerWidth;
+	canvas.style.height = window.innerHeight;
+	app.main.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 }
