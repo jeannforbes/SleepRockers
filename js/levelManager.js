@@ -1,8 +1,7 @@
-//levelManager.js
-//This object keeps track of a 2D grid of tile information and calls the entityManager. 
-"use strict"
 
-var app = app || { } //singleton
+"use strict";
+
+var app = app || {};
 
 app.levelManager = {
 	//Properties

@@ -12,26 +12,30 @@ app.main = {
     maxSpeed: 200,
    	lastTime: 0, // use to calculate deltaTime
     game: undefined,
-    LevelManager: undefined,
-    EntityManager: undefined,
-    PlotManager: undefined,
     TEMP_LEVEL: undefined,
 
     
     // Initializes global variables and states - only called once!
 	init : function() {
-		console.log("Initializing...");
 
-        this.game = new Phaser.Game(800,600,Phaser.AUTO, '', { 
+        /* CREATE THE GAME */
+
+        this.game = new Phaser.Game(window.innerWidth,window.innerHeight,Phaser.AUTO, '', { 
             preload: this.preload.bind(this), 
             create: this.create.bind(this),
             update: this.update.bind(this)});
 
-        app.entityManager.init(this.game);
+        app.plotManager.init();
+        app.levelManager.init();
+        app.entityManager.init();
+
+        /* EVENT HANDLERS */
+        window.addEventListener('resize', resizeScreen);
 	},
 
     //Preloads assets for the game - called by phaser on initialization of game
     preload: function(){
+        //app.levelManager.preload();
         app.entityManager.preload();
 
         //TEMPORARY CODE FOR PLAYTEST
@@ -41,6 +45,8 @@ app.main = {
 
     //Creates objects - called by phaser on initialization of game
     create: function(){
+
+        //app.levelManager.create();
 
         //TEMPORARY CODE FOR PLAYTEST
         this.game.world.setBounds(0,0,900,900);
@@ -60,6 +66,7 @@ app.main = {
     // Updates 1 step in the game state - called by phaser
 	update: function(){
        //update entities
+      // app.levelManager.update();
        app.entityManager.update();
 	},
 
