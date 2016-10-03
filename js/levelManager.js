@@ -7,22 +7,24 @@ app.levelManager = {
 	//Properties
 	//delta: 0, //not sure if this is the right manager to keep track of this value.
 	//scrollSpeed: 5,
-	game: undefined
+	game: undefined,
 	level: undefined,
 	backgroundLayer: undefined,
 	collisionLayer: undefined,
 	
 	//Initializes the level manager object
-	init: function(game){
-		this.game = game;
-	}
+	init: function(){
+		this.game = app.main.game;
+		
+		console.log("levelManager initialized");
+	},
 	
 	//Preloads assets for the game - called by phaser on initialization of game
     preload: function(){
 		//map data
-		this.game.load.tilemap('planet','assets\tilemaps\maps\testMap.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('planet','assets/tilemaps/maps/testMap.json', null, Phaser.Tilemap.TILED_JSON);
 		//tileset
-		this.game.load.image('planetTiles','assets\tilemaps\tiles\testTiles.jpg');
+		this.game.load.image('planetTiles','assets/tilemaps/tiles/testTiles.jpg');
     },
 
     //Creates objects - called by phaser on initialization of game
