@@ -4,7 +4,7 @@
 
 "use strict";
 
-// Only make 1 of main (it's a singleton)
+// Singletons
 var app = app || {};
 
 app.main = {
@@ -15,6 +15,7 @@ app.main = {
     LevelManager: undefined,
     EntityManager: undefined,
     PlotManager: undefined,
+    TEMP_LEVEL: undefined,
 
     
     // Initializes global variables and states - only called once!
@@ -25,22 +26,41 @@ app.main = {
             preload: this.preload.bind(this), 
             create: this.create.bind(this),
             update: this.update.bind(this)});
+
+        app.entityManager.init(this.game);
 	},
 
     //Preloads assets for the game - called by phaser on initialization of game
     preload: function(){
-        this.game.load.image('test', 'assets/sprites/test.png');
+        app.entityManager.preload();
+
+        //TEMPORARY CODE FOR PLAYTEST
+        this.game.load.image('tempTile', 'assets/tiles/Sand.png');
+        this.game.load.image('sky', 'assets/background/sky.jpg');
     },
 
     //Creates objects - called by phaser on initialization of game
     create: function(){
-        initEntityManager(this.game);
-        new Entity(100, 100, 'test');
+
+        //TEMPORARY CODE FOR PLAYTEST
+        this.game.world.setBounds(0,0,900,900);
+
+        this.BG = this.game.add.sprite(0,0,'sky');
+        this.TEMP_LEVEL = this.game.add.group();
+        var x=0, y=0;
+        for(x=0; y<11; x++){
+            if( x > 11){ y++; x = 0;}
+            var tile = this.TEMP_LEVEL.create(x*64 + 64,256 + 64*y,'tempTile');
+                tile.scale.setTo(.25,.25);
+        }
+
+        app.entityManager.create();
     },
 	
     // Updates 1 step in the game state - called by phaser
 	update: function(){
        //update entities
+       app.entityManager.update();
 	},
 
     //Calculates the current fps
