@@ -25,21 +25,37 @@ app.entityManager = {
 	},
 
 	create : function(){
-        this.player = this.game.add.sprite(300,400,'player');
-        this.game.camera.follow(this.player);
+
+		this.entities = this.game.add.group();
+		//Set values for all entities in world
+        this.entities.enableBody = true;
+        this.entities.physicsBodyType = Phaser.Physics.ARCADE;
+
+        this.player = this.game.add.sprite(this.game.world.bounds.width/2,this.game.world.bounds.height/2,'player');
+        this.entities.add(this.player);
         this.player.anchor.setTo(0.5, 0.5);
-        this.player.scale.setTo(1.5,1.5);
 
         this.player.animations.add('up', [0, 1, 2], 10, true);
         this.player.animations.add('down', [3, 4, 5], 10, true);
         this.player.animations.add('right', [6, 7, 8], 10, true);
         this.player.animations.add('left', [9, 10, 11], 10, true);
         this.player.animations.add('idle', [5, 3, 4], 2, true);
+
+        this.player.body.collideWorldBounds = true;
 	},
 
 	//Updates all entities in group
 	update : function(){
+		//Keep camera on player
+		this.game.camera.bounds = null;
+		this.game.camera.x = this.player.x - window.innerWidth/2;
+		this.game.camera.y = this.player.y - window.innerHeight/2;
+
+		//Update entities
 		//this.entities.callAll('move');
+
+		//Update player
+		this.player.bringToTop();
 		this.player.animations.play('walk',50,true);
 
 		//Updates the player's position
