@@ -51,33 +51,5 @@ app.levelManager = {
 	update: function(){
 
         app.entityManager.update();
-		//delta = game.Time.now()-game.Time.prevTime();
 	},
-	
-	//levelManager specific functions
-	/*
-	//scrolls the level to the left by off-setting the camera to the right.
-	//Used for when the player is moving right.
-	scrollLeft: function(){
-		app.main.game.camera.x -= scrollSpeed*delta;
-	}
-	
-	//scrolls the level to the right by off-setting the camera to the left.
-	//Used for when the player is moving left.
-	scrollRight: function(){
-		app.main.game.camera.x += scrollSpeed*delta;
-	}
-	
-	//scrolls the level upwards by off-setting the camera downwards.
-	//Used for when the player is moving up.
-	scrollUp: function(){
-		app.main.game.camera.y -= scrollSpeed*delta;
-	}
-	
-	//scrolls the level downwards by off-setting the camera upwards.
-	//Used for when the player is moving down.
-	scrollDown: function(){
-		app.main.game.camera.y += scrollSpeed*delta;
-	}
-	*/
 }
