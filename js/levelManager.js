@@ -4,6 +4,7 @@
 var app = app || {};
 
 app.levelManager = {
+	//Properties
 	game: undefined,
 	map: undefined,
 	sky: undefined,
@@ -66,5 +67,4 @@ app.levelManager = {
 			}
 		}
 	},
-
-};
+}
