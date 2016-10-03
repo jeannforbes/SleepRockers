@@ -6,18 +6,24 @@ var app = app || { } //singleton
 
 app.levelManager = {
 	//Properties
-	delta: 0, //not sure if this is the right manager to keep track of this value.
-	scrollSpeed: 5,
+	//delta: 0, //not sure if this is the right manager to keep track of this value.
+	//scrollSpeed: 5,
+	game: undefined
 	level: undefined,
 	backgroundLayer: undefined,
 	collisionLayer: undefined,
 	
+	//Initializes the level manager object
+	init: function(game){
+		this.game = game;
+	}
+	
 	//Preloads assets for the game - called by phaser on initialization of game
     preload: function(){
 		//map data
-		app.main.game.load.tilemap('planet','assets\tilemaps\maps\planet.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('planet','assets\tilemaps\maps\testMap.json', null, Phaser.Tilemap.TILED_JSON);
 		//tileset
-		app.main.game.load.image('planetTiles','assets\tilemaps\tiles\planet.jpg');
+		this.game.load.image('planetTiles','assets\tilemaps\tiles\testTiles.jpg');
     },
 
     //Creates objects - called by phaser on initialization of game
@@ -39,13 +45,13 @@ app.levelManager = {
     // Updates 1 step in the game state - called by phaser
 	update: function(){
         //app.entityManager.update();
-		delta = game.Time.now()-game.Time.prevTime();
+		//delta = game.Time.now()-game.Time.prevTime();
 		
 		//[Collision handling occurs here?] 
 	},
 	
 	//levelManager specific functions
-	
+	/*
 	//scrolls the level to the left by off-setting the camera to the right.
 	//Used for when the player is moving right.
 	scrollLeft: function(){
@@ -69,4 +75,5 @@ app.levelManager = {
 	scrollDown: function(){
 		app.main.game.camera.y += scrollSpeed*delta;
 	}
+	*/
 }
